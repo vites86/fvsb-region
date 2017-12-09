@@ -93,7 +93,6 @@
                             </div>
                         </div>    
                         <hr>
-                pro        
                         <div style="width:100%; text-align:center">
                         <div class="title"><span>Відео</span></div>
                                 <iframe width="560"  height="315" src="https://www.youtube.com/embed/6f8k7EpkqtY" frameborder="0" gesture="media" 
