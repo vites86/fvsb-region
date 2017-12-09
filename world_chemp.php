@@ -56,7 +56,6 @@
                         який разом з заступником Міністра молоді та спорту України Войтовичем Я.В., побажали успіхів спортсменам в цьому виді спорту.</p>
                         <p>У напруженій боротьбі з іноземними спортсменами та своїми співвітчизниками спортсмени Київської обласної федерації ВСБ здобули наступні нагороди по версіям:</p>
                         <img src="img/world9.JPG" style="width: 40%; float: right; margin-right: 10px;">
-                        <img src="img/world6.png" style="width: 40%; float: left; margin-right: 10px;">
                         <div class="row">
                             <div class="col-1-6" style="float:left"> 
                                <ul>
@@ -76,6 +75,7 @@
                                <li>Б1 (до 55 кг) 1-ше місце</li>  
                                </ul>
                             </div>
+                            
                             <div class="col-1-6">
                                <ul> 
                                  <li><b>Герасименко Володимир:</b></li> 
@@ -91,8 +91,17 @@
                                  <li>Б2  1-ше місце</li>
                                </ul>
                             </div>
-                        </div>                
-                    <a href="goo.gl/h9jxYG">Управління фізичної культури і спорту Київської обласної державної адміністрації</a>
+                        </div>    
+                        <hr>
+                        
+                        <div style="width:100%; text-align:center">
+                        <div class="title"><span>Відео</span></div>
+                                <iframe width="560"  height="315" src="https://www.youtube.com/embed/6f8k7EpkqtY" frameborder="0" gesture="media" 
+                                allow="encrypted-media" allowfullscreen>
+                                </iframe>  
+                        </div>          
+                        <hr>
+                        <a href="goo.gl/h9jxYG">Управління фізичної культури і спорту Київської обласної державної адміністрації</a>
 			    </div>	
 		    </div>
         </div>
