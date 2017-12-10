@@ -53,7 +53,7 @@
 							<p></p>
 							<p>Telephone : +38 (097) 405-31-93</p>
 							<p>Cайт : www.msac.kiev.ua</p>
-							<p>Email :  kiev_fvsm@mail.ru</p>
+							<p>Email :  fvsb.kiev@ukr.net</p>
 						</div>
 					</div>
 				</div>

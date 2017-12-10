@@ -8,6 +8,9 @@
 	<title>Міжнародні змагання</title>
 	<meta name="keys" content="контакти, секції єдиноборств Київ">
 	<meta name="description" content="Міжнародні змагання">
+    <meta name="title" content="Участь у міжнародних змаганнях" />
+    <meta property="og:image" content="img/world4.png" />
+    <meta name="image" content="http://nuou.org.ua/media/k2/items/cache/008c8534b5d3a2f55fcba82b811ebe8e_XS.jpg" />
     <?php require_once('blocks/head.php'); ?>	
     <script type="text/javascript">
      $(window).load(function(){  

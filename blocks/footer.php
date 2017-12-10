@@ -41,7 +41,7 @@
 							<ul>
 								<li>Address : вул. Університетська, 31, Ірпінь, Київська область, 08200</li>
 								<li>Phone : (097) 405-31-93</li>
-								<li>Email : kiev_fvsm@mail.ru</li>
+								<li>Email : fvsb.kiev@ukr.net</li>
 								<li>Website : www.msac.kiev.ua</li>
 							</ul>
 						</div>
