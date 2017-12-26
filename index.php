@@ -7,8 +7,18 @@
 <head>
     <!-- Basic Page Needs
   ================================================== -->	
-	<meta name="description" content="єдиноборства, бойове двоборство, Київ, київська обласна федерація, ВСБ">
-	<title>Київ ВСБ</title>
+  <meta name="description" content="Kiev Region Federation of Military and Sport All-round Compatition." />
+  <meta name="keywords" content="msac, всб, військово-спортивні багатоборства, стрільба, бій, всестильовий бій, Київ" />
+ 	<link rel="canonical" href=http://fvsb.kiev.ua />
+    <meta name="robots" content="index.php">
+ 	<meta property="og:site_name" content="Kiev Region Federation of Military and Sport All-round Compatition">
+	<meta property="og:title" content="Київ ВСБ | MSAC" />
+	<meta property="og:description" content="Kiev Region Federation of Military and Sport All-round Compatition." />
+	<meta property="og:image" content="http://fvsb.kiev.ua/img/shevron.png" />
+	<meta property="og:url" content=http://fvsb.kiev.ua />
+	<meta property="og:type" content="website" />
+	<meta name="description" content="">
+	<title>Київ ВСБ | MSAC</title>
 	<?php require_once('blocks/head.php'); ?>
 </head>
 <body>
