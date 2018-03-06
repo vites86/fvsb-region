@@ -49,7 +49,7 @@ public function addVideo()
  
           $file_path_forBD1 = 'images/gallery/video/' . $fileName;
           $file_path_forBD2 = 'images/gallery/video/' . $fileName1;
-          $result= mysql_query ("INSERT INTO video(img_src, video_src) VALUES ($file_path_forBD1, $file_path_forBD2)");
+          $result= mysqli_query($db,"INSERT INTO video(img_src, video_src) VALUES ($file_path_forBD1, $file_path_forBD2)");
           if ($result == 'true') 
             {
               return "<img style='margin:30px;' src='../images/gallery/other/$fileName' alt=''/><p style='color:blue;'>    Добавлено успешно!</p>";
@@ -66,7 +66,7 @@ public function delVideo($id,$img_src,$video_src)
  include ("blocks/php.php");
  if (isset($id) && isset($img_src) && isset($video_src))
  { 
-    $result= mysql_query ("DELETE FROM video WHERE id='$id'");
+    $result= mysqli_query($db,"DELETE FROM video WHERE id='$id'");
     if ($result == 'true') 
     {
 $file_path1 = $_SERVER['DOCUMENT_ROOT'] . "/" . $img_src;
@@ -88,22 +88,22 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
           public function getPageTitle($id)
           {       
               include ("php.php");
-              $result = mysql_query("SELECT * FROM pages WHERE id=$id",$db);
-              if (!$result) { die('Неверный запрос: ' . mysql_error());}
-              $myrow = mysql_fetch_array ($result); 
-              do { $pageTitle = $myrow['title']; }
-              while ($myrow = mysql_fetch_array($result));
+              $result = mysqli_query($db,"SELECT * FROM pages WHERE id=$id");
+              if (!$result) { die('Неверный запрос: ' . mysqli_error());}
+              while( $myrow = mysqli_fetch_assoc($result) )
+			  { $pageTitle = $myrow['title']; }
+              mysqli_free_result($result); 
               return $pageTitle;
           }
 
           public function pageSrc($id)
           {
                 include ("blocks/php.php");
-                $result = mysql_query("SELECT src as src FROM pages where id like '$id'",$db);  
-                // if (!$result) {die('Ошибка выполнения запроса:' . mysql_error());}
-                $myrow = mysql_fetch_array ($result); 
-                do { $id= $myrow['id'];}
-                while($myrow = mysql_fetch_array($result));      
+                $result = mysqli_query($db,"SELECT src as src FROM pages where id like '$id'");  
+                // if (!$result) {die('Ошибка выполнения запроса:' . mysqli_error());}
+                while( $myrow = mysqli_fetch_assoc($result) )
+			    { $id= $myrow['id'];}
+                mysqli_free_result($result);     
                 return $count_shou;
           }
           public function addNews($news_count, $title, $short_name,$meta_d, $meta_k, $description, $author, $text, $ext)
@@ -112,9 +112,9 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
                 $query = "INSERT INTO news(id, title, short_name, meta_d, meta_k, description, author, img, text_, date_ ) 
                   VALUES ($news_count, '$title','$short_name','$meta_d','$meta_k', '$description', '$author', 'img/news/$news_count.$ext', '$text', NOW())";
                 //return "addNews() - ".$query;                 
-                $result= mysql_query ($query);
+                $result= mysqli_query($db,$query);
                 if (!$result)                   
-                    return "addNews(): bad mysql_query(".mysql_error().")";
+                    return "addNews(): bad mysqli_query($db,".mysqli_error().")";
                 else 
                     return "good";         
           }
@@ -122,12 +122,12 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
           public function getNewsCount()
           {
                 include ("blocks/php.php");
-                $result = mysql_query("SELECT MAX(id) as id FROM news",$db);  
-                $myrow = mysql_fetch_array ($result); 
-                do { 
+                $result = mysqli_query($db,"SELECT MAX(id) as id FROM news");  
+                while( $myrow = mysqli_fetch_assoc($result) )
+			    {
                   $count_news= $myrow['id'];
                 }
-                while($myrow = mysql_fetch_array($result));      
+                mysqli_free_result($result);        
                 return $count_news;
           }
 
@@ -137,9 +137,9 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
                 $query = "INSERT INTO events(id, title, meta_d, meta_k, description, author, img, text_, city, date_ ) 
                   VALUES ($events_count, '$title','$meta_d','$meta_k', '$description', '$author', 'img/events/$events_count.$ext', '$text', '$city', '$date' )";
                 //return "addNews() - ".$query;                 
-                $result= mysql_query ($query);
+                $result= mysqli_query($db,$query);
                 if (!$result)                   
-                    return "addNews(): bad mysql_query(".mysql_error().")";
+                    return "addNews(): bad mysqli_query($db,".mysqli_error().")";
                 else 
                     return "good";         
           }
@@ -150,33 +150,33 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
                 $query = "INSERT INTO sportmen(id, name, rank,  description ) 
                   VALUES ($sportsmen_count, '$name','$rank', '$description')";
                 //return "addNews() - ".$query;                 
-                $result= mysql_query ($query);
+                $result= mysqli_query($db,$query);
                 if (!$result)                   
-                    return "addSportsmen(): bad mysql_query(".mysql_error().")";
+                    return "addSportsmen(): bad mysqli_query($db,".mysqli_error().")";
                 else 
                     return "good";         
           }
           public function getArticlesCount()
           {
                 include ("blocks/php.php");
-                $result = mysql_query("SELECT MAX(id) as id FROM events",$db);  
-                $myrow = mysql_fetch_array ($result); 
-                do { 
+                $result = mysqli_query($db,"SELECT MAX(id) as id FROM events");  
+                while( $myrow = mysqli_fetch_assoc($result) )
+			    { 
                   $count_news= $myrow['id'];
                 }
-                while($myrow = mysql_fetch_array($result));      
+                mysqli_free_result($result);       
                 return $count_news;
           }
 
           public function getSportsmenCount()
           {
                 include ("blocks/php.php");
-                $result = mysql_query("SELECT MAX(id) as id FROM sportmen",$db);  
-                $myrow = mysql_fetch_array ($result); 
-                do { 
+                $result = mysqli_query($db,"SELECT MAX(id) as id FROM sportmen");  
+                while( $myrow = mysqli_fetch_assoc($result) )
+			    { 
                   $count_news= $myrow['id'];
                 }
-                while($myrow = mysql_fetch_array($result));      
+                mysqli_free_result($result);       
                 return $count_news;
           }
 
@@ -214,7 +214,7 @@ $file_path2 = $_SERVER['DOCUMENT_ROOT'] . "/" . $video_src;
            include ("blocks/php.php");
            if (isset($id) && isset($img_src))
            { 
-              $result= mysql_query ("DELETE FROM news WHERE id='$id'");
+              $result= mysqli_query($db,"DELETE FROM news WHERE id='$id'");
               if ($result == 'true') 
               {
                  $file_newsIcon = $_SERVER['DOCUMENT_ROOT'] . "/" . $img_src;
@@ -275,13 +275,13 @@ public function updateNews($id, $title, $short_name, $meta_d, $meta_k, $descript
         $text = str_replace("``", "\"", $text);
         $description = str_replace("``", "\"", $description);
         $title = str_replace("``", "\"", $title);
-        $result= mysql_query ("UPDATE news SET `title`='$title', `short_name` = '$short_name', `meta_d`='$meta_d', `meta_k`='$meta_k', 
+        $result= mysqli_query($db,"UPDATE news SET `title`='$title', `short_name` = '$short_name', `meta_d`='$meta_d', `meta_k`='$meta_k', 
           `description`='$description', `author` = '$author', `date_`='$date', `text_`='$text', `img`='$img_src' WHERE id='$id' ");
         if ($result) {
             return "good";
         }
         else{
-            return "updateNews(): bad mysql_query(".mysql_error().")";;
+            return "updateNews(): bad mysqli_query($db,".mysqli_error().")";;
         }
     }   
     else
@@ -321,13 +321,13 @@ public function updateArticle($id, $title, $meta_d, $meta_k, $description, $auth
         $text = str_replace("``", "\"", $text);
         $description = str_replace("``", "\"", $description);
         $title = str_replace("``", "\"", $title);
-        $result= mysql_query ("UPDATE events SET `title`='$title', `meta_d`='$meta_d', `meta_k`='$meta_k', `description`='$description',
+        $result= mysqli_query($db,"UPDATE events SET `title`='$title', `meta_d`='$meta_d', `meta_k`='$meta_k', `description`='$description',
           `author` = '$author', `date_`='$date', `text_`='$text', `img`='$img_src', `city`='$city'  WHERE id='$id' ");
         if ($result) {
             return "good";
         }
         else{
-            return "updateArticles(): bad mysql_query(".mysql_error().")";;
+            return "updateArticles(): bad mysqli_query($db,".mysqli_error().")";;
         }
     }   
     else
@@ -345,12 +345,12 @@ public function updateSportman($id, $name, $rank, $competitions)
         $rank = str_replace("'", "`", $rank);
         $competitions = str_replace("'", "`", $competitions);
         
-        $result= mysql_query ("UPDATE sportmen SET `name`='$name', `rank`='$rank', `description`='$competitions' WHERE id='$id' ");
+        $result= mysqli_query($db,"UPDATE sportmen SET `name`='$name', `rank`='$rank', `description`='$competitions' WHERE id='$id' ");
         if ($result) {
             return "good";
         }
         else{
-            return "updateSportman(): bad mysql_query(".mysql_error().")";;
+            return "updateSportman(): bad mysqli_query($db,".mysqli_error().")";;
         }
     }   
     else
@@ -364,7 +364,7 @@ public function delSportmen($id)
  include ("blocks/php.php");
  if (isset($id))
  { 
-  $result= mysql_query ("DELETE FROM sportmen WHERE id='$id'");
+  $result= mysqli_query($db,"DELETE FROM sportmen WHERE id='$id'");
   if ($result == 'true') 
   {
    $file_newsIcon = $_SERVER['DOCUMENT_ROOT'] . "/img/sportmen/$id.png";
@@ -392,7 +392,7 @@ public function delArticle($id,$img_src)
  include ("blocks/php.php");
  if (isset($id) && isset($img_src))
  { 
-  $result= mysql_query ("DELETE FROM events WHERE id='$id'");
+  $result= mysqli_query($db,"DELETE FROM events WHERE id='$id'");
   if ($result == 'true') 
   {
    $file_newsIcon = $_SERVER['DOCUMENT_ROOT'] . "/" . $img_src;
@@ -438,7 +438,7 @@ public function postInSocNetworks($news_count)
 public function putDataInBuffer($data,$category)
 {
         include ("php.php");
-        $result= mysql_query ("UPDATE buffer SET value='$data' WHERE description like '$category' ");
+        $result= mysqli_query($db,"UPDATE buffer SET value='$data' WHERE description like '$category' ");
         if ($result == 'true') {return "good";}
         else {return "bad";}   
    
@@ -447,10 +447,12 @@ public function putDataInBuffer($data,$category)
 public function getDataFromBuffer($category)
 {
     include ("php.php");
-    $result = mysql_query("SELECT value as value FROM buffer WHERE description like '$category'",$db);  
-    $myrow = mysql_fetch_array ($result); 
-    do { $news_id = $myrow['value']; }
-    while( $myrow = mysql_fetch_array($result) );      
+    $result = mysqli_query($db,"SELECT value as value FROM buffer WHERE description like '$category'");  
+    while( $myrow = mysqli_fetch_assoc($result) )
+	{  
+      $news_id = $myrow['value']; 
+    }
+    mysqli_free_result($result);        
     return $news_id;
 }
 
@@ -516,10 +518,10 @@ public function postInTwitter()
 public function getNewsInfo($id)
           {       
               include ("php.php");
-              $result = mysql_query("SELECT * FROM news WHERE id=$id",$db);
-              if (!$result) { die('Невірний запит: ' . mysql_error());}
-              $myrow = mysql_fetch_array ($result); 
-              do { 
+              $result = mysqli_query($db,"SELECT * FROM news WHERE id=$id");
+              if (!$result) { die('Невірний запит: ' . mysqli_error());}
+              while( $myrow = mysqli_fetch_assoc($result) )
+                { 
                     $news_param = array(  
                       'news_count' => $id,
                       'title' => $myrow['title'],
@@ -527,8 +529,8 @@ public function getNewsInfo($id)
                       'text' => $myrow['text_'],
                       'img' => $myrow['img']
                         );              
-              }
-              while ($myrow = mysql_fetch_array($result));
+                }
+                    mysqli_free_result($result);
               return $news_param;
               exit;
           }
@@ -537,14 +539,14 @@ public function getNewsInfo($id)
 public function updateNewsFbId($news_id, $fb_id)
 { 
    include ("php.php");
-   $result= mysql_query ("UPDATE news SET `fb_id`='$fb_id' WHERE id='$news_id' ");
+   $result= mysqli_query($db,"UPDATE news SET `fb_id`='$fb_id' WHERE id='$news_id' ");
         if ($result) 
         {
             return "good";
         }
         else
         {
-            return "updateNews(): bad mysql_query(".mysql_error().")";;
+            return "updateNews(): bad mysqli_query($db,".mysqli_error().")";;
         }
 }      
 
@@ -554,21 +556,14 @@ public function  getUserAccessToken()
   session_start();
   $login = $_SESSION["login"];
   $login = "vites";
-  $result= mysql_query ("SELECT a.value as access_token FROM access_tokens as a 
+  $result= mysqli_query($db,"SELECT a.value as access_token FROM access_tokens as a 
                          LEFT OUTER JOIN userlist as b 
                          ON a.user_id = b.id WHERE b.login like '$login'");
-  $myrow = mysql_fetch_array ($result); 
+  $myrow = mysqli_fetch_assoc ($result); 
   $access_token =  $myrow['access_token']; 
   return $access_token;
   exit;
 }
-
-
-
-
-
-
-
 
 }
 

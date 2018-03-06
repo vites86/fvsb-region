@@ -35,9 +35,9 @@
 				<div class="wrap-col">
 
 							<?php                  
-				                       $result = mysql_query("SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM events order by date_ desc limit 3",$db);
-				                       $myrow = mysql_fetch_array ($result);
-				                       do {         
+				                       $result = mysqli_query($db,"SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM events order by date_ desc limit 3");
+									   while( $myrow = mysqli_fetch_assoc($result) )
+									   {         
 				                            printf ("      <article>
 				                           						<h2><a href='events.php?id=%s'>%s</a></h2>
 				                           						<div class='info'>[Додав Admin  %s, <a href='#'>0 Коментарів</a>]</div>
@@ -45,8 +45,8 @@
 				                           						<p>%s...</p>
 				                           					</article>
 				                           ", $myrow['id'],  $myrow['title'], $myrow['eurodate'], $myrow['id'], $myrow['img'], $myrow['description']);      
-				                           }
-				                       while ($myrow = mysql_fetch_array($result));
+										}
+										mysqli_free_result($result); 
 				                 ?> 					
 					
 				</div>				

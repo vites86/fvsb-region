@@ -85,6 +85,6 @@
   </section>
                             <!-- Footer -->
 <footer>
-                              <?php require_once('blocks/footer.php'); ?> 
+  <?php require_once('blocks/footer.php'); ?> 
 </footer>
 </body></html>       

@@ -32,18 +32,18 @@
 			<div class="title"><span>Галерея</span></div><br>
 
 			<?php                  
-			   $result = mysql_query("SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc",$db);
-			   $myrow = mysql_fetch_array ($result);
-			   do {         
-			   printf ("
-			   	<div class='col-1-4'>
-				  <div class='wrap-col'>
-					  <a href='photo.php?id=%s'><img src='%s' class='grayscale'/></a>
-					  <center><h2>%s</h2></center>
-				  </div>
-			    </div> ",$myrow['id'], $myrow['img'], $myrow['short_name']);      
-                           }
-               while ($myrow = mysql_fetch_array($result));
+			   $result = mysqli_query($db,"SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc");
+			   while( $myrow = mysqli_fetch_assoc($result) )
+			   {          
+			      printf ("
+			      	<div class='col-1-4'>
+			         <div class='wrap-col'>
+			    	  <a href='photo.php?id=%s'><img src='%s' class='grayscale'/></a>
+			    	  <center><h2>%s</h2></center>
+			         </div>
+			       </div> ",$myrow['id'], $myrow['img'], $myrow['short_name']);      
+			   }
+			   mysqli_free_result($result); 
                  ?> 
 			
 			

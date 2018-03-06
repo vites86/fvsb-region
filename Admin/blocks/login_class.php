@@ -6,12 +6,12 @@ class Login
       public function getUserId($login)
       {  
             include ("php.php");
-            $result = mysql_query("SELECT id as id FROM userlist where login like '$login'",$db);  
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT id as id FROM userlist where login like '$login'");  
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{  
               $user_id = $myrow['id'];
             }
-            while($myrow = mysql_fetch_array($result));      
+						mysqli_free_result($result); 
             return $user_id;
             exit;      
       }
@@ -21,12 +21,12 @@ class Login
       {  
       	    include ("php.php");
             $password_md5 = md5($password);
-            $result = mysql_query("SELECT login as login FROM userlist where login like '$login' and pass like '$password_md5'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT login as login FROM userlist where login like '$login' and pass like '$password_md5'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{ 
               $login = $myrow['login'];
             }
-            while($myrow = mysql_fetch_array($result));      
+						mysqli_free_result($result);       
             return $login;
             exit;      
       }
@@ -34,13 +34,13 @@ class Login
       public function getUserRoleByLogin($login)
       {  
             include ("php.php");
-            $result = mysql_query("SELECT rus_name as rus_name FROM userlist 
-                                   where login like '$login'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT rus_name as rus_name FROM userlist 
+                                   where login like '$login'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{ 
               $rus_name = $myrow['rus_name'];
             }
-            while($myrow = mysql_fetch_array($result));      
+            mysqli_free_result($result);       
             return $rus_name;
             exit;      
       }
@@ -48,15 +48,15 @@ class Login
       public function getUserRusNameByLogin($login)
       {  
           include ("php.php");
-            $result = mysql_query("SELECT rls.role as role FROM userlist as usr
+            $result = mysqli_query($db,"SELECT rls.role as role FROM userlist as usr
                                    LEFT OUTER JOIN roles as rls
                                    ON rls.id = usr.role_id
-                                   where usr.login like '$login'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+                                   where usr.login like '$login'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{
               $user_role = $myrow['role'];
             }
-            while($myrow = mysql_fetch_array($result));      
+            mysqli_free_result($result);       
             return $user_role;
             exit;      
       }
@@ -64,15 +64,15 @@ class Login
       public function getUserRoleDescriptionByLogin($login)
       {  
           include ("php.php");
-            $result = mysql_query("SELECT rls.description as role FROM userlist as usr
+            $result = mysqli_query($db,"SELECT rls.description as role FROM userlist as usr
                                    LEFT OUTER JOIN roles as rls
                                    ON rls.id = usr.role_id
-                                   where usr.login like '$login'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+                                   where usr.login like '$login'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{
               $user_role = $myrow['role'];
             }
-            while($myrow = mysql_fetch_array($result));      
+            mysqli_free_result($result);        
             return $user_role;
             exit;      
       }
@@ -80,7 +80,7 @@ class Login
       public function change_password($login, $old_password, $new_password)// Заменяет старый пароль новым. Возвращает значение true или генерирует исключение
       {  // Если прежний пароль введен правильно, он заменяется новым и возвращается значение true, в противном случае генерируется исключение
         include ("php.php");
-        $result = mysql_query("update userlist set pass = '$new_password' where user like '$login'",$db); 
+        $result = mysqli_query($db,"update userlist set pass = '$new_password' where user like '$login'"); 
         if (!$result)
         {                  
           header("HTTP/1.1 301 Moved Permanently");                    
@@ -100,7 +100,7 @@ class Login
        public function change_userPassword($client_id, $new_password)// Заменяет старый пароль новым. Возвращает значение true или генерирует исключение
       {  // Если прежний пароль введен правильно, он заменяется новым и возвращается значение true, в противном случае генерируется исключение
         include ("php.php");
-        $result = mysql_query("update users_passwords set password = '$new_password' where client_id like '$client_id'",$db); 
+        $result = mysqli_query($db,"update users_passwords set password = '$new_password' where client_id like '$client_id'"); 
         if (!$result)
         {                  
           return 'Пароль не изменен!';
@@ -116,12 +116,12 @@ class Login
       public function checkValidPass($login,$password)
       {  
             include ("php.php");
-            $result = mysql_query("SELECT user FROM userlist where login like '$login' and pass like '$password'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT user FROM userlist where login like '$login' and pass like '$password'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{ 
               $login = $myrow['login'];
             }
-            while($myrow = mysql_fetch_array($result));     
+            mysqli_free_result($result);      
             return $login;                   
             // if ($user == '')  return true; 
             // else return false;        
@@ -131,33 +131,33 @@ class Login
       {  
             include ("php.php");
             $user_id = Login::getUserId($login);
-            $result = mysql_query("INSERT INTO admin_entries(user_id, date_connect) VALUES ('$user_id',NOW())",$db);   
+            $result = mysqli_query($db,"INSERT INTO admin_entries(user_id, date_connect) VALUES ('$user_id',NOW())");   
             if (!$result) {
-            die('Ошибка выполнения запроса:' . mysql_error());}            
+            die('Ошибка выполнения запроса:' . mysqli_error());}            
       }
 
      public function getLastConnect($login)
       {  
             include ("php.php");
             $user_id = Login::getUserId($login);
-            $result = mysql_query("SELECT date_connect as last_date FROM admin_entries where user_id like '$user_id' order by date_connect desc limit 2",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT date_connect as last_date FROM admin_entries where user_id like '$user_id' order by date_connect desc limit 2");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{ 
               $last_date = $myrow['last_date'];
             }
-            while($myrow = mysql_fetch_array($result));     
+            mysqli_free_result($result);       
             return $last_date;  
       }
       public function getCountConnect($login)
       {  
             include ("php.php");
             $user_id = Login::getUserId($login);
-            $result = mysql_query("SELECT COUNT(date_connect) as connects_count FROM admin_entries where user_id like '$user_id'",$db);             
-            $myrow = mysql_fetch_array ($result); 
-            do { 
+            $result = mysqli_query($db,"SELECT COUNT(date_connect) as connects_count FROM admin_entries where user_id like '$user_id'");             
+            while( $myrow = mysqli_fetch_assoc($result) )
+						{ 
               $connects_count = $myrow['connects_count'];
             }
-            while($myrow = mysql_fetch_array($result));     
+            mysqli_free_result($result);     
             return $connects_count;  
       }
 

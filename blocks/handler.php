@@ -7,8 +7,8 @@ class Handler
 public function getSportmenIds()
           {
                 include ("php.php");
-                $result = mysql_query("SELECT MAX(id)-4 as id FROM `sportmen`",$db);  
-                $myrow = mysql_fetch_array ($result); 
+                $result = mysqli_query($db,"SELECT MAX(id)-4 as id FROM `sportmen`");  
+                $myrow = mysqli_fetch_assoc($result); 
                 return $myrow['id'];                   
           }
 

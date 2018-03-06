@@ -3,14 +3,13 @@ if (isset($_GET['news_id'])) {$news_id = $_GET['news_id'];}
 if (!isset($news_id))
 {
 echo "<br><br>";
-$result = mysql_query("SELECT id, name, rank, description FROM sportmen order by id desc");
-$myrow = mysql_fetch_array($result); 
-do 
+$result = mysqli_query($db,"SELECT id, name, rank, description FROM sportmen order by id desc");
+while( $myrow = mysqli_fetch_assoc($result) ) 
 {
 printf ("<p><img src='../img/sportmen/$myrow[id].png' style='height:50px;' />
          <a href='index.php?id=12&news_id=%s'>%s</a></p><br>",$myrow["id"],$myrow["name"]);
 }
-while ($myrow = mysql_fetch_array($result));
+mysqli_free_result($result);
 echo "<br><br><br><br><br><br><br><br>";
 }
 else

@@ -36,15 +36,15 @@
 
 							<?php                  
                                      $max_posts=3; 
-                                     $num_posts=mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM news")) or die(mysql_error());
+                                     $num_posts=mysqli_fetch_assoc(mysqli_query($db,"SELECT COUNT(*) FROM news")) or die(mysqli_error());
                                      $num_posts = $num_posts["COUNT(*)"]; 
                                      $num_pages=ceil($num_posts/$max_posts);  
                                      if (isset($_GET['page']))  {$page=$_GET['page'];} else {$page=1;}
                                      if ($page>$num_pages) {$page=$num_pages;}
                                      if ($page<1) {$page=1;}
-                                      $result=mysql_query("SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc LIMIT ".($page-1)*$max_posts.",". $max_posts ); 
-                                      $myrow = mysql_fetch_array($result);
-									do {         
+                                      $result=mysqli_query($db,"SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc LIMIT ".($page-1)*$max_posts.",". $max_posts ); 
+									  while( $myrow = mysqli_fetch_assoc($result) )  
+									  {      
 				                            printf ("      <article>
 				                           						<div>
 				                           			 			    <a href='news.php?id=%s'>
@@ -56,8 +56,8 @@
 				                           					    </div>
 				                           					</article>
 				                           ", $myrow['id'], $myrow['img'], $myrow['id'], $myrow['title'], $myrow['eurodate'], $myrow['description'], $myrow['id']);      
-				                           }
-									while($myrow = mysql_fetch_array($result));   				                      
+									  }
+									  mysqli_free_result($result);    				                      
 				            ?> 					
 					
 				</div>				

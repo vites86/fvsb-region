@@ -1,16 +1,15 @@
       <br><br><form action="handler.php" method="post"> 
                    <input type="hidden" name="handler"  id="handler" value="del_sportmen"/>
                    <?php 
-                   $result = mysql_query("SELECT * FROM sportmen",$db);
-                   $myrow = mysql_fetch_array($result);
-                   do 
-                   {
+                   $result = mysqli_query($db,"SELECT * FROM sportmen");
+                   while( $myrow = mysqli_fetch_assoc($result) )
+                  {
                    printf ("<p><input name='id' type='radio' value='%s'>
                             <lable>%s</lable></p>
                             <input name='img_src' type='hidden' value='%s'>",
                             $myrow["id"],$myrow["name"],$myrow["rank"]);
                    }
-                   while ($myrow = mysql_fetch_array($result));
+                   mysqli_free_result($result);
                    ?>
                    <br>
                    <p><input name="submit" type="submit" value="Видалити"></p>

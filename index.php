@@ -109,18 +109,18 @@
 		                                   <ul class="skr">
 
                                                       <?php                  
-			                                               $result = mysql_query("SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM events where NOW() < date_ order by date_",$db);
-			                                               $myrow = mysql_fetch_array ($result);
-			                                               do {         
-			                                                    printf (" <li class='tcarusel-item'>
+			                                               $result = mysqli_query($db, "SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM events where NOW() < date_ order by date_");
+			                                               while( $myrow = mysqli_fetch_assoc($result) )
+	                                                           {         
+			                                                       printf (" <li class='tcarusel-item'>
 			                                                    	        <a href='events.php?id=%s&page=1'>
 			                                                    	           <img class='news_img' src='%s' alt='%s' tooltip='%s'><br>				 
 			                                                    	           <b>%s</b> // %s //   <br>%s
 			                                                    	        </a>
 			                                                    	      </li>	   				                                                    	      
 			                                                            ", $myrow['id'], $myrow['img'], $myrow['title'], $myrow['title'], $myrow['eurodate'], $myrow['city'], $myrow['title']  );
-			                                                   }
-			                                               while ($myrow = mysql_fetch_array($result));
+															   }
+															   mysqli_free_result($result); 
 			                                          ?> 			                                                                  
 		                                   </ul>
 		                                </div>
@@ -134,9 +134,9 @@
 			   <div style="padding-left: 5%;">
                       <div class="left-block-title">Останні Новини</div>                
 				          <?php                  
-                                 $result = mysql_query("SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc limit 2",$db);
-                                 $myrow = mysql_fetch_array ($result);
-                                 do {         
+                                 $result = mysqli_query($db,"SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc limit 2");
+                                 while( $myrow = mysqli_fetch_assoc($result) )
+	                                  {         
                                       printf ("<div class='col-1-1'>
                                       		<div class='wrap-col' >
                                       			<div style='float:left; width:100%%'>
@@ -147,8 +147,8 @@
                                       		</div>
                                       	</div>
                                      ", $myrow['img'], $myrow['title'], $myrow['description'], $myrow['id'], $myrow['eurodate'] );      
-                                     }
-                                 while ($myrow = mysql_fetch_array($result));
+									}
+									mysqli_free_result($result); 
                            ?> 		
                </div>		
 			</div>

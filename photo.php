@@ -9,25 +9,22 @@
   <?php require_once('blocks/head.php'); ?>
   <?php 
   $id=$_GET["id"];
-  $result = mysql_query("SELECT meta_k, meta_d, title,short_name FROM news where id = $id ",$db);
-  $myrow = mysql_fetch_array($result);
-  do {  
-  $title=$myrow['short_name'];       
-  printf ("
+  $result = mysqli_query($db,"SELECT meta_k, meta_d, title,short_name FROM news where id = $id ");
+  while( $myrow = mysqli_fetch_assoc($result) )
+	{   
+    $title=$myrow['short_name'];       
+    printf ("
     <meta name='keywords' content='%s' />
     <meta name='description' content='%s' />
     <title>%s</title>", $myrow['meta_k'], $myrow['meta_d'], $myrow['title']);      
-      }
-  while ($myrow = mysql_fetch_array($result));
+  }
+  mysqli_free_result($result); 
   ?> 
-
-
 </head>
 <body>
 <!-- Header -->
 <header>
   <?php require_once('blocks/header.php'); ?>
-
 <script type="text/javascript">
  $(window).load(function(){  
    document.getElementById("gallery_nav").className   = 'current';  
@@ -53,8 +50,6 @@
                                    <?php 
                                           $dir = "img/news/".$id."/"; // Папка с изображениями  
                                           $files = scandir($dir); // Берём всё содержимое директории
-                                          
-
                                             echo "<div id='gallery'><p>"; 
                                             $k = 0; // Вспомогательный счётчик для перехода на новые строки
                                             for ($i = 0; $i < count($files); $i++) { // Перебираем все файлы
@@ -69,7 +64,6 @@
                                    ?> 
                                  <div id="empty"></div>  
                             </div>
-                         
            </div>        
         </div>
       </div>
