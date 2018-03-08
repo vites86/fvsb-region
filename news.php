@@ -54,7 +54,7 @@
                         {         
                           printf ("   <article>                                      
                                       <div class='info'>[Додав Admin  %s, <a href='#'>0 Коментарів</a>]</div>
-                                      <img src='%s'/>
+                                      <img style='width:30%%; float:left; margin: 8px 8px 8px 0px;' src='%s'/>
                                       <p>%s</p>
                                       <p>%s</p>
                                       <div class='fb-share-button' data-href='$current_link' data-layout='button'></div>

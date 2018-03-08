@@ -14,9 +14,9 @@ echo "<br><br><br><br><br><br><br><br>";
 }
 else
 {
-$result = mysql_query("SELECT * FROM news WHERE id = $news_id order by id desc");
-$myrow = mysql_fetch_array($result); 
-$img_src = $_SERVER['DOCUMENT_ROOT'] . "/nrk.com.ua/" . $myrow['img'];
+$result = mysqli_query($db,"SELECT * FROM news WHERE id = $news_id order by id desc");
+$myrow = mysqli_fetch_assoc($result); 
+$img_src = $_SERVER['DOCUMENT_ROOT'] . $myrow['img'];
 $title = str_replace("\"", "''", $myrow['title']);
 $text = str_replace("\"", "''", $myrow['text_']);
 $description = str_replace("\"", "''", $myrow['description']);

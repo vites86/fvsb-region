@@ -14,9 +14,9 @@ echo "<br><br><br><br><br><br><br><br>";
 }
 else
 {
-$result = mysql_query("SELECT * FROM sportmen WHERE id = $news_id order by id desc");
-$myrow = mysql_fetch_array($result); 
-$img_src = $_SERVER['DOCUMENT_ROOT'] . "/msac/" . $myrow['img'];
+$result = mysqli_query($db,"SELECT * FROM sportmen WHERE id = $news_id order by id desc");
+$myrow = mysqli_fetch_assoc($result); 
+$img_src = $_SERVER['DOCUMENT_ROOT'] . "/" . $myrow['img'];
 $name = str_replace("\"", "''", $myrow['name']);
 $rank = str_replace("\"", "''", $myrow['rank']);
 $description = str_replace("\"", "''", $myrow['description']);
