@@ -49,6 +49,13 @@
 <!--Content -->
 <section id="content">
 	<div class="wrap-content zerogrid">
+
+	<hr style="width: 90%;" align="center">
+		
+		<div class="row block03">
+			<div class="title"><span>Відео</span></div>
+			<?php include("blocks/video.php"); ?>
+		</div>
 		
 		<div class="row block01"><h2><a href="http://fvsm.org.ua/" target="_blank">Військово-спортивні багатоборства</a> - неолімпійський вид спорту</h2>
 		<p> який має два розділи: бойове двоборство (стрільба + всестильовий бій) та військово-прикладне семиборство.</p></div>
@@ -122,7 +129,7 @@
 					  <?php include("blocks/news_block.php"); ?>	
                </div>		
 			</div>
-		</div>
+		</div>		
 
 		<hr style="width: 90%;" align="center">
 		
