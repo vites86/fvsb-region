@@ -19,13 +19,13 @@
 						<div class="content">
 							<div class="tag">
 								<a href="http://msac.od.ua">Одеса</a>
-								<a href="https://www.facebook.com/groups/100275970398188/">Херсон</a>
+								<a href="https://www.facebook.com/hthkherson/">Херсон</a>
 								<a href="http://khfvsm.io.ua">Харків</a>
 								<a href="http://zrfvsm-voin.io.ua">Зміїв</a>
 								<a href="#">Запоріжжя</a>
 								<a href="#">Хмельницький</a>
 								<a href="#">Житомир</a>
-								<a href="#">Кривий ріг</a>
+								<a href="https://www.facebook.com/groups/1651790441798988/">Львів</a>
 								<a href="https://vk.com/club9673416">Чернігів</a>
 								<a href="http://www.voin.in.ua">Полтава</a>
 							</div>
@@ -41,6 +41,7 @@
 							<ul>
 								<li>Address : вул. Університетська, 31, Ірпінь, Київська область, 08200</li>
 								<li>Phone : (097) 405-31-93</li>
+								<li>Phone : (093) 829-87-91</li>
 								<li>Email : fvsb.kiev@ukr.net</li>
 								<li>Website : www.msac.kiev.ua</li>
 							</ul>
@@ -52,5 +53,5 @@
 	</div>
 	
 	<div class="copyright">
-		<p>Copyright © 2016 - <a href="http://www.vdstudio.net.ua" target="_blank">VDStudio</a> by <a href="http://www.zerotheme.com" target="_blank">vdstudio.net.ua</a></p>
+		<p>Copyright © 2016 - <a href="http://www.vdstudio.net.ua" target="_blank">VDStudio</a> by <a href="http://www.vdstudio.net.ua" target="_blank">vdstudio.net.ua</a></p>
 	</div>

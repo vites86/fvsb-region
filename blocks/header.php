@@ -3,10 +3,10 @@
 		<div id="logo"><a href="index.php"><img src="./img/logo.png"/></a></div>
 		<div class="social">
 			<ul>
-				<li><a href="https://www.facebook.com/groups/522443294588536/"><img src="./img/social/facebook-icon.png" /></a></li>
-				<li><a href="#"><img src="./img/social/google-icon.png" /></a></li>
-				<li><a href="#"><img src="./img/social/twitter-bird-icon.png" /></a></li>
-				<li><a href="#"><img src="./img/social/rss-icon.png" /></a></li>
+				<li><a href="https://www.facebook.com/fvsbkiev/"><img src="./img/social/facebook-icon.png" /></a></li>
+				<li><a href="https://www.youtube.com/channel/UCSX-qT5EhgCdH7px4tT5LOQ?view_as=subscriber"><img src="./img/social/google-icon.png" /></a></li>
+				<li><a href="https://www.facebook.com/fvsbkiev/"><img src="./img/social/twitter-bird-icon.png" /></a></li>
+				<li><a href="https://www.facebook.com/fvsbkiev/"><img src="./img/social/rss-icon.png" /></a></li>
 			</ul>
 		</div>
 		<nav>

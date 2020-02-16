@@ -5,17 +5,20 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-  <?php require_once('blocks/head.php'); ?>
+  <?php require_once('blocks/header_short.php'); ?>
   <?php 
   $id=$_GET["id"];
-  $result = mysqli_query($db,"SELECT meta_k, meta_d, title FROM news where id = $id ");
+  $result = mysqli_query($db,"SELECT meta_k, meta_d, title, img FROM news where id = $id ");
   while( $myrow = mysqli_fetch_assoc($result) )
   {  
     $title=$myrow['title'];       
     printf ("
     <meta name='keywords' content='%s' />
     <meta name='description' content='%s' />
-    <title>%s</title>", $myrow['meta_k'], $myrow['meta_d'], $myrow['title']);      
+    <meta property='og:description' content='%s' />
+    <meta property='og:title' content='%s' />
+	  <meta property='og:image' content='%s'/>
+    <title>%s</title>", $myrow['meta_k'], $myrow['meta_d'], $myrow['meta_d'], $myrow['title'], $myrow['img'], $myrow['title']);      
   }
   mysqli_free_result($result); 
 
@@ -23,7 +26,7 @@
 <style type="text/css">
   p {text-align: justify;}
 </style>
-</head>
+  </head>
 <body>
 <!-- Header -->
 <header>
@@ -54,7 +57,7 @@
                         {         
                           printf ("   <article>                                      
                                       <div class='info'>[Додав Admin  %s, <a href='#'>0 Коментарів</a>]</div>
-                                      <img src='%s'/>
+                                      <img style='width:30%%; float:left; margin: 8px 8px 8px 0px;' src='%s'/>
                                       <p>%s</p>
                                       <p>%s</p>
                                       <div class='fb-share-button' data-href='$current_link' data-layout='button'></div>

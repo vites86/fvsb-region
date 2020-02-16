@@ -2,6 +2,8 @@
        session_start();      
        include ("blocks/php.php");
        require_once ("blocks/myclass.php");
+       require_once ("php.php");
+       require_once ("myclass.php");
        // echo "logged=$logged"; exit;
        // include ("blocks/php.php");  
        $logged = $_SESSION["logged"];

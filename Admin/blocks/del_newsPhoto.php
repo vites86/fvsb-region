@@ -15,7 +15,7 @@ if (!isset($news_id))
 else
 {
      
-     $news_directory = $_SERVER['DOCUMENT_ROOT'] ."/nrk.com.ua". "/img/news/$news_id/";
+     $news_directory = $_SERVER['DOCUMENT_ROOT'] . "/img/news/$news_id/";
      $files = scandir($news_directory); // Берём всё содержимое директории 
      if (count($files) == 2) {echo "<h1>Фотографії покищо не завантажені в дану новину</h1>";}
      print <<<HERE

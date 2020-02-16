@@ -49,6 +49,13 @@
 <!--Content -->
 <section id="content">
 	<div class="wrap-content zerogrid">
+
+	<hr style="width: 90%;" align="center">
+		
+		<div class="row block03">
+			<div class="title"><span>Відео</span></div>
+			<?php include("blocks/video.php"); ?>
+		</div>
 		
 		<div class="row block01"><h2><a href="http://fvsm.org.ua/" target="_blank">Військово-спортивні багатоборства</a> - неолімпійський вид спорту</h2>
 		<p> який має два розділи: бойове двоборство (стрільба + всестильовий бій) та військово-прикладне семиборство.</p></div>
@@ -107,21 +114,7 @@
 									<div class="index-panel">
 										<div class="tt-panel" style="display: block;">
 		                                   <ul class="skr">
-
-                                                      <?php                  
-			                                               $result = mysqli_query($db, "SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM events where NOW() < date_ order by date_");
-			                                               while( $myrow = mysqli_fetch_assoc($result) )
-	                                                           {         
-			                                                       printf (" <li class='tcarusel-item'>
-			                                                    	        <a href='events.php?id=%s&page=1'>
-			                                                    	           <img class='news_img' src='%s' alt='%s' tooltip='%s'><br>				 
-			                                                    	           <b>%s</b> // %s //   <br>%s
-			                                                    	        </a>
-			                                                    	      </li>	   				                                                    	      
-			                                                            ", $myrow['id'], $myrow['img'], $myrow['title'], $myrow['title'], $myrow['eurodate'], $myrow['city'], $myrow['title']  );
-															   }
-															   mysqli_free_result($result); 
-			                                          ?> 			                                                                  
+										      <?php include("blocks/anons_block.php"); ?>	
 		                                   </ul>
 		                                </div>
 										
@@ -133,34 +126,16 @@
 			<div class="col-2-3">
 			   <div style="padding-left: 5%;">
                       <div class="left-block-title">Останні Новини</div>                
-				          <?php                  
-                                 $result = mysqli_query($db,"SELECT *, DATE_FORMAT(date_,'%d.%m.%Y') as eurodate FROM news order by date_ desc limit 2");
-                                 while( $myrow = mysqli_fetch_assoc($result) )
-	                                  {         
-                                      printf ("<div class='col-1-1'>
-                                      		<div class='wrap-col' >
-                                      			<div style='float:left; width:100%%'>
-                                      			      <img src='%s' style='height:140px; width: 200px ; float:left; margin-right: 15px; margin-top:20px;'/>
-                                      			      <h2 style='font-size: 20px; margin-top:15px; width:100%%;'>%s</h2>
-                                      			      <p style='text-align:justify;'>%s<a href='news.php?id=%s&page=1' target='_blank'>   Детальніше...</a></p>
-                                      		    </div>
-                                      		</div>
-                                      	</div>
-                                     ", $myrow['img'], $myrow['title'], $myrow['description'], $myrow['id'], $myrow['eurodate'] );      
-									}
-									mysqli_free_result($result); 
-                           ?> 		
+					  <?php include("blocks/news_block.php"); ?>	
                </div>		
 			</div>
-		</div>
-
-
+		</div>		
 
 		<hr style="width: 90%;" align="center">
 		
 		<div class="row block03">
 			<div class="title"><span>Найкращі спортсмени</span></div>
-						<?php include("blocks/sportmen.php"); ?>
+			<?php include("blocks/sportmen.php"); ?>
 		</div>
 
 		<hr style="width: 90%;" align="center">
